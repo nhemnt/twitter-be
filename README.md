@@ -2,8 +2,6 @@
 
 Backend API for Twitter clone using Nest framework (NodeJS + Typescript + PostgreSQL)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ![Nodejs workflow](https://github.com/nhemnt/twitter-be/actions/workflows/nodejs.yml/badge.svg)
 
 ## Installation
