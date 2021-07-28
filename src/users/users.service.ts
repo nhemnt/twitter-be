@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { AuthService } from 'src/auth/auth.service';
 import { UserEntity } from './users.entity';
 import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private userRepo: UsersRepository) {}
+  constructor(
+    private userRepo: UsersRepository,
+    private authService: AuthService,
+  ) {}
   /**
    * @description find a user with given userName
    * @param username
@@ -27,8 +31,13 @@ export class UsersService {
    * @description create new user with given details
    * @returns {Promise<UserEntity>} user if created
    */
-  public async createUser(user: Partial<UserEntity>): Promise<UserEntity> {
-    return this.userRepo.save(user);
+  public async createUser(
+    user: Partial<UserEntity>,
+    password: string,
+  ): Promise<UserEntity> {
+    const newUser = await this.userRepo.save(user);
+    await this.authService.createPasswordForNewUSer(newUser.id, password);
+    return newUser;
   }
 
   /**
