@@ -6,10 +6,12 @@ export class UserEntity extends TwitterBaseEntity {
   @Column({ length: 30, nullable: false, unique: true })
   username: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 50, nullable: true })
   name: string;
+
+  @Column({ nullable: true })
   avatar: string;
-  @Column({ length: 240 })
+  @Column({ length: 240, nullable: true })
   bio: string;
 
   @Column({ name: 'follower_count', default: 0 })

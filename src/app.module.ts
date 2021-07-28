@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './users/users.entity';
 import { PostEntity } from './posts/posts.entity';
 import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+import { HashtagsModule } from './hashtags/hashtags.module';
 
 @Module({
   imports: [
@@ -19,16 +21,13 @@ import { UsersModule } from './users/users.module';
       logger: 'advanced-console',
       logging: 'all',
       entities: [UserEntity, PostEntity],
-      dropSchema: true,
+      // dropSchema: true,
     }),
     UsersModule,
+    PostsModule,
+    HashtagsModule,
   ],
-  controllers: [
-    AppController,
-    // UsersController,
-    PostsController,
-    HashtagsController,
-  ],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
